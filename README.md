@@ -1,2 +1,2 @@
-# TalkHub-ChatApp | Setup and Layout
+# TalkHub-ChatApp | User Profile
 Quasar Framework
