@@ -1,2 +1,4 @@
-# TalkHub-ChatApp | User Profile
-Quasar Framework
+# Quasar App (quasar-project)
+
+## UI | HOME 
+![Alt text](public/image.png)
