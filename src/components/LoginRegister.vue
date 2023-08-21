@@ -11,22 +11,27 @@
 </template>
 <script>
 import { ref } from 'vue'
+import { mapActions } from 'vuex' // mapActions
+
 export default {
   props: {
     tab: String
   },
   setup (props) {
+    const { registerUser } = mapActions('store', ['registerUser'])
+    // const store = useStore()
     const tab = props.tab
     const userData = ref({
       name: '',
       email: '',
       password: ''
     })
-    const submitForm = () => {
+    // const message = computed(() => store.state.store.message)
+    const submitForm = async () => {
       if (tab === 'login') {
         console.log('Login the user')
       } else {
-        console.log('register the user')
+        await registerUser()
       }
     }
     return {

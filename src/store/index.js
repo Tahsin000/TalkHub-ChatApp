@@ -1,12 +1,13 @@
-// store/index.js
 import { createStore } from 'vuex'
-import store from './store'
+import storeModule from './store'
 
-const _store = createStore({
-  modules: {
-    store
-    // Add more modules as needed
-  }
-})
+export default function () {
+  // eslint-disable-next-line new-cap
+  const Store = new createStore({
+    modules: {
+      store: storeModule
+    }
+  })
 
-export default _store
+  return Store
+}
