@@ -2,10 +2,10 @@
   <h1>{{ msg }}</h1>
 
   <div class="card">
-    <p class="display_100">count is {{ count }}</p>
+    <p class="display_100">count is {{ $store.state.count }}</p>
     <div class="_flex">
-      <button type="button" @click="count--">-</button>
-      <button type="button" @click="count++">+</button>
+      <button type="button" @click="$store.state.count--">-</button>
+      <button type="button" @click="$store.state.count++">+</button>
     </div>
   </div>
 </template>
@@ -19,10 +19,6 @@ export default {
   },
   setup(){
   
-  const count = ref(0);
-    return{
-      count
-    }
   }
 }
 
