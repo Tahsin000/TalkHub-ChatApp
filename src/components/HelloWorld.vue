@@ -4,8 +4,8 @@
   <div class="card">
     <p class="display_100">count is {{ $store.state.count }}</p>
     <div class="_flex">
-      <button type="button" @click="$store.commit('decreaseCounter')">-</button>
-      <button type="button" @click="$store.commit('increaseCounter')">+</button>
+      <button type="button" @click="$store.dispatch('decreaseCounter')">-</button>
+      <button type="button" @click="$store.dispatch('increaseCounter')">+</button>
     </div>
   </div>
 </template>

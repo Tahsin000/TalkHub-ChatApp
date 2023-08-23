@@ -2,7 +2,11 @@
 
 ## [1. setup state](https://github.com/Tahsin000/TalkHub-ChatApp/tree/b448d880c39e07e9f3bd786f9d9a7a94fdddcd91)
 
-## [2. setup mutations]()
+## [2. setup mutations](https://github.com/Tahsin000/TalkHub-ChatApp/tree/bdd4c60ec62aabd9a014aa230e18e094731dafa8)
+
+## [3. setup action]()
+
+## [4. setup getters]()
 
 | Package Name     | Description                                                                                                  | Installation Command             |
 | ---------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------- |
