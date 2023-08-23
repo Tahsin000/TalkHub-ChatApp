@@ -3,6 +3,10 @@
 
   <div class="card">
     <p class="display_100">count is {{ $store.state.count }}</p>
+    <div class="count-squared">
+      {{ $store.state.count }}
+      <sup>2</sup> = {{ $store.getters.counterSqre }}
+    </div>
     <div class="_flex">
       <button type="button" @click="$store.dispatch('decreaseCounter')">-</button>
       <button type="button" @click="$store.dispatch('increaseCounter')">+</button>

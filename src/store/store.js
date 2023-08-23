@@ -29,7 +29,9 @@ const store = createStore({
         }
     },
     getters:{
-
+        counterSqre(state){
+            return state.count * state.count
+        }
     },
     modules:{
 

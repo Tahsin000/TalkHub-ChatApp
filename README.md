@@ -4,7 +4,7 @@
 
 ## [2. setup mutations](https://github.com/Tahsin000/TalkHub-ChatApp/tree/bdd4c60ec62aabd9a014aa230e18e094731dafa8)
 
-## [3. setup action]()
+## [3. setup action](https://github.com/Tahsin000/TalkHub-ChatApp/tree/bb25f29d22f7c2e07b42929e50aa99346251e031)
 
 ## [4. setup getters]()
 
