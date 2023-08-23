@@ -5,7 +5,12 @@ const store = createStore({
         count:0
     },
     mutations:{
-
+        decreaseCounter (state){
+            state.count--
+        },
+        increaseCounter (state){
+            state.count++
+        }
     },
     actions:{
 

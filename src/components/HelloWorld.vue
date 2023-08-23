@@ -4,8 +4,8 @@
   <div class="card">
     <p class="display_100">count is {{ $store.state.count }}</p>
     <div class="_flex">
-      <button type="button" @click="$store.state.count--">-</button>
-      <button type="button" @click="$store.state.count++">+</button>
+      <button type="button" @click="$store.commit('decreaseCounter')">-</button>
+      <button type="button" @click="$store.commit('increaseCounter')">+</button>
     </div>
   </div>
 </template>
@@ -16,9 +16,6 @@ import { ref } from "vue";
 export default {
   props:{
     msg: String
-  },
-  setup(){
-  
   }
 }
 

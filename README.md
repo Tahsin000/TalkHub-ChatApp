@@ -1,5 +1,9 @@
 # Package of Vue js
 
+## [1. setup state](https://github.com/Tahsin000/TalkHub-ChatApp/tree/b448d880c39e07e9f3bd786f9d9a7a94fdddcd91)
+
+## [2. setup mutations]()
+
 | Package Name     | Description                                                                                                  | Installation Command             |
 | ---------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------- |
 | **Vue Router**   | Official routing library for Vue.js. Helps manage navigation and routing in your single-page applications.   | `npm install vue-router`         |
