@@ -3,7 +3,8 @@ import { createStore } from 'vuex';
 
 const store = createStore({
     state:{
-        count:0
+        count:0,
+        colorCode: 'blue'
     },
     mutations:{
         decreaseCounter (state, randomNumber){
@@ -12,6 +13,9 @@ const store = createStore({
         increaseCounter (state, randomNumber){
             state.count += randomNumber
             // console.log('randomNumber', randomNumber);
+        },
+        setColorCode(state, newValue){
+            state.colorCode = newValue
         }
     },
     actions:{
@@ -26,6 +30,9 @@ const store = createStore({
             console.log('decreaseCounter (action)');
             axios('https://www.random.org/integers/?num=1&min=1&max=6&col=1&base=10&format=plain&rnd=new')
             .then(res => commit('decreaseCounter', res.data));
+        },
+        setColorCode({ commit }, newValue){
+            commit('setColorCode', newValue)
         }
     },
     getters:{

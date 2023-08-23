@@ -2,7 +2,7 @@
   <h1>{{ msg }}</h1>
 
   <div class="card">
-    <p class="display_100">count is {{ $store.state.count }}</p>
+    <p class="display_100" :style="{color: $store.state.colorCode}">count is {{ $store.state.count }}</p>
     <div class="count-squared">
       {{ $store.state.count }}
       <sup>2</sup> = {{ $store.getters.counterSqre }}
@@ -12,6 +12,7 @@
       <button type="button" @click="$store.dispatch('increaseCounter')">+</button>
     </div>
   </div>
+  <input placeholder="Enter color code" v-model="$store.state.colorCode" type="text">
 </template>
 
 <script>
@@ -20,6 +21,16 @@ import { ref } from "vue";
 export default {
   props:{
     msg: String
+  },
+  computed:{
+    colorCode:{
+      get(){
+        return this.$store.state.colorCode
+      },
+      set(newValue){
+        this.$store.dispatch('setColorCode', newValue)
+      }
+    }
   }
 }
 

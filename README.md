@@ -6,7 +6,11 @@
 
 ## [3. setup action](https://github.com/Tahsin000/TalkHub-ChatApp/tree/bb25f29d22f7c2e07b42929e50aa99346251e031)
 
-## [4. setup getters]()
+## [4. setup getters](https://github.com/Tahsin000/TalkHub-ChatApp/tree/bae8f2ee2b0bd9de30d861918d408eef826eda7d)
+
+## [5. Vuex & two way to binding]()
+
+## [6. More replayed]()
 
 | Package Name     | Description                                                                                                  | Installation Command             |
 | ---------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------- |
