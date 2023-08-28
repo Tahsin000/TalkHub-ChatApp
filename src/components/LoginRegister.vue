@@ -1,8 +1,8 @@
 <template lang="">
     <q-form @submit="submitForm">
-        <q-input v-if="tab=='register'" class="q-mb-md" outlined v-model="userData.name" label="Name" :dense="dense" />
-        <q-input class="q-mb-md" outlined v-model="userData.email" label="Email" :dense="dense" />
-        <q-input class="q-mb-md" outlined v-model="userData.name" label="Name" :dense="dense" />
+        <q-input v-if="tab=='register'" class="q-mb-md" outlined v-model="formData.name" label="Name" :dense="dense" />
+        <q-input class="q-mb-md" outlined v-model="formData.email" label="Email" :dense="dense" />
+        <q-input type="password" class="q-mb-md" outlined v-model="formData.password" label="Password" :dense="dense" />
         <div class="row">
             <q-space></q-space>
             <q-btn type="submit" color="primary" :label="tab"></q-btn>
@@ -11,31 +11,37 @@
 </template>
 <script>
 import { ref } from 'vue'
-import { mapActions } from 'vuex' // mapActions
+import { useStore } from 'vuex'
 
 export default {
   props: {
     tab: String
   },
   setup (props) {
-    const { registerUser } = mapActions('store', ['registerUser'])
-    // const store = useStore()
     const tab = props.tab
-    const userData = ref({
+    const store = useStore() // Get the store instance
+
+    // Use ref for reactive properties
+    const formData = ref({
       name: '',
       email: '',
       password: ''
     })
-    // const message = computed(() => store.state.store.message)
-    const submitForm = async () => {
+
+    // Destructure the action directly
+    // const { RegisterUser } = mapActions('store1', ['RegisterUser'])
+
+    const submitForm = () => {
       if (tab === 'login') {
-        console.log('Login the user')
+        store.dispatch('myStore/loginUser', formData.value)
       } else {
-        await registerUser()
+        store.dispatch('myStore/RegisterUser', formData.value) // Use store instance to dispatch action
       }
     }
+
     return {
-      userData, submitForm
+      formData,
+      submitForm
     }
   }
 }
