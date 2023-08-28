@@ -1,3 +1,3 @@
 # Quasar App (quasar-project)
 
-## UI | Vuex & Firebase
+## Auth - Register & Login
