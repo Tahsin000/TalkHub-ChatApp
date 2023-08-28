@@ -1,39 +1,30 @@
 <template>
   <h1>{{ msg }}</h1>
-
+  <Counter />
   <div class="card">
-    <p class="display_100" :style="{color: $store.state.colorCode}">count is {{ $store.state.count }}</p>
-    <div class="count-squared">
-      {{ $store.state.count }}
-      <sup>2</sup> = {{ $store.getters.counterSqre }}
-    </div>
-    <div class="_flex">
-      <button type="button" @click="$store.dispatch('decreaseCounter')">-</button>
-      <button type="button" @click="$store.dispatch('increaseCounter')">+</button>
-    </div>
+    <CounterSquar/>
+    <Btn />
   </div>
-  <input placeholder="Enter color code" v-model="$store.state.colorCode" type="text">
+  <ColorCode />
 </template>
 
 <script>
+import Counter from "./Counter.vue"; // Import the Counter component directly
+import CounterSquar from "./CounterSquar.vue"; // Import the Counter component directly
+import Btn from "./Button.vue"; // Import the Counter component directly
+import ColorCode from "./ColorCode.vue"; // Import the Counter component directly
 
-import { ref } from "vue";
 export default {
-  props:{
-    msg: String
+  props: {
+    msg: String,
   },
-  computed:{
-    colorCode:{
-      get(){
-        return this.$store.state.colorCode
-      },
-      set(newValue){
-        this.$store.dispatch('setColorCode', newValue)
-      }
-    }
-  }
-}
-
+  components: {
+    Counter,
+    CounterSquar,
+    ColorCode,
+    Btn
+  },
+};
 </script>
 
 <style scoped>
