@@ -7,3 +7,4 @@
 ## [6. Design the Data Structure](https://github.com/Tahsin000/TalkHub-ChatApp/tree/6._Design_the_Data_Structure)
 ## [7. Auth - Register & Login](https://github.com/Tahsin000/TalkHub-ChatApp/tree/7._Register_%26_Login)
 ## [8. Auth - Handle Auth State Changed](https://github.com/Tahsin000/TalkHub-ChatApp/tree/8._Handle_Auth_State_Changed)
+## [9. Auth - Logout & Set User's Online Status ](https://github.com/Tahsin000/TalkHub-ChatApp/tree/9._Auth_Logout_%26_Set_User's_Online_Status)
