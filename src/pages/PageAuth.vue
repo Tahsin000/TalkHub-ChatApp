@@ -38,8 +38,9 @@ export default {
     LoginRegidter
   },
   setup () {
+    const tab = ref('login')
     return {
-      tab: ref('mails')
+      tab
     }
   }
 }

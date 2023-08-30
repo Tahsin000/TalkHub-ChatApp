@@ -1,3 +1,3 @@
 # Quasar App (quasar-project)
 
-## Auth - Handle Auth State Changed
+## Auth - Logout & Set User's Online Status

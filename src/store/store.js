@@ -1,7 +1,8 @@
 import app from 'boot/firebase' // firebaseDb
 // import { firebaseAuth } from 'boot/firebase'
-import { get, getDatabase, ref, set } from 'firebase/database'
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
+import { get, getDatabase, ref, set, update } from 'firebase/database'
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { useRouter } from 'vue-router'
 
 const auth = getAuth(app)
 const Db = getDatabase()
@@ -35,11 +36,6 @@ const actions = {
           .catch((error) => {
             console.error('Error setting data:', error)
           })
-        // getDatabase.ref('users/' + userId).set({
-        //   name: info.name,
-        //   email: info.email,
-        //   online: true
-        // })
       })
       .catch(error => {
         console.log(error.message)
@@ -55,12 +51,24 @@ const actions = {
         console.log(error.message)
       })
   },
-  async handleAuthStateChange ({ commit }) {
+  async logoutUser () {
+    await signOut(auth)
+      .then(result => console.log(result))
+      .catch(error => console.log(error))
+  },
+  async handleAuthStateChange ({ commit, dispatch, state }) {
+    const router = useRouter()
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const userId = auth.currentUser.uid
         console.log(userId)
         const dataRef = ref(Db, `/users/${userId}`)
+        dispatch('firebaseUpdateUser', {
+          userId: userId,
+          updates: {
+            online: true
+          }
+        })
         get(dataRef).then(snapshot => {
           const userDetails = snapshot.val()
           commit('setUserDetails', {
@@ -72,11 +80,30 @@ const actions = {
         }).catch(error => {
           console.error('Error fetching data:', error)
         })
+        router.push('/')
       } else {
+        dispatch('firebaseUpdateUser', {
+          userId: state.userDetails.userId,
+          updates: {
+            online: false
+          }
+        })
         commit('setUserDetails', {})
+        router.replace('/auth')
       }
     })
+  },
+  firebaseUpdateUser (context, payload) {
+    const dataRef = ref(Db, `/users/${payload.userId}`)
+    update(dataRef, payload.updates)
+      .then(() => {
+        console.log('Data updated successfully')
+      })
+      .catch((error) => {
+        console.error('Error updating data:', error)
+      })
   }
+
 }
 const getters = {
 

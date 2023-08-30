@@ -24,8 +24,8 @@ export default {
     // Use ref for reactive properties
     const formData = ref({
       name: '',
-      email: '',
-      password: ''
+      email: '123@gmail.com',
+      password: '123123123'
     })
 
     // Destructure the action directly
