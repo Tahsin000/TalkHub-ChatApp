@@ -4,15 +4,16 @@
     separator
     class="full-width">
       <q-item
-        v-for="user in users"
-        :key="user.id"
+        v-for="(user, key) in users"
+        :key="key"
         clickable
         v-ripple
         to="/chat"
       >
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white">
-            {{ user.name.charAt(0) }}
+            {{ user && user.name ? user.name.charAt(0) : '' }}
+            <!-- {{ user.name.charAt(0) }} -->
           </q-avatar>
         </q-item-section>
 
@@ -32,21 +33,15 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+
+import { useStore } from 'vuex'
 export default {
   setup () {
-    const users = [{
-      id: 1,
-      name: 'Danny',
-      online: true
-    }, {
-      id: 2,
-      name: 'Jim',
-      online: false
-    }, {
-      id: 3,
-      name: 'Lucy',
-      online: true
-    }]
+    const store = useStore()
+    const users = computed(() => {
+      return store.getters['myStore/users'] // Replace with your actual getter name
+    })
     return {
       users
     }

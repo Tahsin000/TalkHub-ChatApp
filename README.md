@@ -1,3 +1,3 @@
 # Quasar App (quasar-project)
 
-## Auth - Logout & Set User's Online Status
+## Get the Users

@@ -14,7 +14,6 @@
         <q-toolbar-title class="absolute-center">
           {{ title }}
         </q-toolbar-title>
-        <p>{{ userAuhSate }}</p>
         <q-btn
           v-if="!userAuhSate.userId"
           dense

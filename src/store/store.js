@@ -1,17 +1,22 @@
 import app from 'boot/firebase' // firebaseDb
 // import { firebaseAuth } from 'boot/firebase'
-import { get, getDatabase, ref, set, update } from 'firebase/database'
+import { get, getDatabase, ref, set, update, onChildAdded } from 'firebase/database'
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { useRouter } from 'vue-router'
 
 const auth = getAuth(app)
 const Db = getDatabase()
 const state = {
-  userDetails: {}
+  userDetails: {},
+  users: {}
 }
 const mutations = {
   setUserDetails (state, payload) {
     state.userDetails = payload
+  },
+  addUsers (state, payload) {
+    // console.log('payload', payload)
+    state.users[payload.userId] = payload.userDetails
   }
 }
 const actions = {
@@ -64,7 +69,7 @@ const actions = {
         console.log(userId)
         const dataRef = ref(Db, `/users/${userId}`)
         dispatch('firebaseUpdateUser', {
-          userId: userId,
+          userId,
           updates: {
             online: true
           }
@@ -80,6 +85,7 @@ const actions = {
         }).catch(error => {
           console.error('Error fetching data:', error)
         })
+        dispatch('firebaseGetUsers')
         router.push('/')
       } else {
         dispatch('firebaseUpdateUser', {
@@ -102,11 +108,27 @@ const actions = {
       .catch((error) => {
         console.error('Error updating data:', error)
       })
+  },
+  firebaseGetUsers ({ commit }) {
+    const dataRef = ref(Db, '/users')
+    onChildAdded(dataRef, (snapshot) => {
+      const userDetails = snapshot.val()
+      const userId = snapshot.key
+      console.log('User details:', userDetails)
+      commit('addUsers', {
+        userId,
+        userDetails
+      })
+    }, (error) => {
+      console.error('Error fetching data:', error)
+    })
   }
 
 }
 const getters = {
-
+  users: state => {
+    return state.users
+  }
 }
 export default {
   namespaced: true,
