@@ -1,3 +1,3 @@
 # Quasar App (quasar-project)
 
-## Auth - Register & Login
+## Auth - Handle Auth State Changed
