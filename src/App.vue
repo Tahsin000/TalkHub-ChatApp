@@ -3,9 +3,14 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { useStore } from 'vuex'
 
-export default defineComponent({
-  name: 'App'
-})
+// import { defineComponent } from 'vue'
+
+export default {
+  setup () {
+    const store = useStore()
+    store.dispatch('myStore/handleAuthStateChange')
+  }
+}
 </script>

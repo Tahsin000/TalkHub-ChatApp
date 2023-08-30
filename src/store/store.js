@@ -1,15 +1,17 @@
 import app from 'boot/firebase' // firebaseDb
 // import { firebaseAuth } from 'boot/firebase'
-import { getDatabase, ref, set } from 'firebase/database'
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { get, getDatabase, ref, set } from 'firebase/database'
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
 
 const auth = getAuth(app)
 const Db = getDatabase()
 const state = {
-
+  userDetails: {}
 }
 const mutations = {
-
+  setUserDetails (state, payload) {
+    state.userDetails = payload
+  }
 }
 const actions = {
   async RegisterUser (context, info) {
@@ -52,6 +54,28 @@ const actions = {
       .catch(error => {
         console.log(error.message)
       })
+  },
+  async handleAuthStateChange ({ commit }) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const userId = auth.currentUser.uid
+        console.log(userId)
+        const dataRef = ref(Db, `/users/${userId}`)
+        get(dataRef).then(snapshot => {
+          const userDetails = snapshot.val()
+          commit('setUserDetails', {
+            name: userDetails.name,
+            email: userDetails.email,
+            userId
+          })
+          // console.log('snapshot', snapshot)
+        }).catch(error => {
+          console.error('Error fetching data:', error)
+        })
+      } else {
+        commit('setUserDetails', {})
+      }
+    })
   }
 }
 const getters = {
